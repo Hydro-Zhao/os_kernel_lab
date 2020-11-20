@@ -46,6 +46,15 @@ idt_init(void) {
       *     You don't know the meaning of this instruction? just google it! and check the libs/x86.h to know more.
       *     Notice: the argument of lidt is idt_pd. try to find it!
       */
+    extern uintptr_t __vectors[];
+    for (int i=0; i<256; ++i) {
+        if (i != T_SYSCALL && i != T_SWITCH_TOK) {
+            SETGATE(idt[i], 0, KERNEL_CS, __vectors[i], DPL_KERNEL);
+        } else {
+            SETGATE(idt[i], i == T_SYSCALL, KERNEL_CS, __vectors[i], DPL_USER);
+        }
+    }
+    lidt(&idt_pd);
 }
 
 static const char *
@@ -147,6 +156,10 @@ trap_dispatch(struct trapframe *tf) {
          * (2) Every TICK_NUM cycle, you can print some info using a funciton, such as print_ticks().
          * (3) Too Simple? Yes, I think so!
          */
+        ticks++;
+        if (ticks % TICK_NUM == 0) {
+            print_ticks();
+        }
         break;
     case IRQ_OFFSET + IRQ_COM1:
         c = cons_getc();
@@ -155,11 +168,37 @@ trap_dispatch(struct trapframe *tf) {
     case IRQ_OFFSET + IRQ_KBD:
         c = cons_getc();
         cprintf("kbd [%03d] %c\n", c, c);
+        if (c == '3') goto _switch_to_user;
+        else if (c == '0') goto _switch_to_kernel;
         break;
     //LAB1 CHALLENGE 1 : YOUR CODE you should modify below codes.
     case T_SWITCH_TOU:
+    _switch_to_user:
+        if (trap_in_kernel(tf)) {
+            struct trapframe temp_tf = *tf;
+            temp_tf.tf_cs = USER_CS;
+            temp_tf.tf_ss = temp_tf.tf_gs = temp_tf.tf_fs = temp_tf.tf_es = temp_tf.tf_ds = USER_DS;
+            // then set the ESP to the ESP of switch_to_user()
+            temp_tf.tf_esp = (uintptr_t)tf + offsetof(struct trapframe, tf_esp);
+            // set eflags, make sure ucore can use io under user mode.
+            // if CPL > IOPL, then cpu will generate a general protection.
+            temp_tf.tf_eflags |= FL_IOPL_3;
+            // let __trapret use the temporary stack we set up
+            *((uint32_t *)tf - 1) = (uint32_t) &temp_tf;
+        }
+        break;
     case T_SWITCH_TOK:
-        panic("T_SWITCH_** ??\n");
+    _switch_to_kernel:
+        if (!trap_in_kernel(tf)) {
+            struct trapframe *tmp_tf_u2k;
+            tf->tf_cs = KERNEL_CS;
+            tf->tf_ds = KERNEL_DS;
+            tf->tf_es = KERNEL_DS;
+            tf->tf_eflags &= ~FL_IOPL_MASK;
+            tmp_tf_u2k = (struct trapframe *)(tf->tf_esp - (sizeof(struct trapframe) - 8));
+            memmove(tmp_tf_u2k, tf, sizeof(struct trapframe) - 8);
+            *((uint32_t *)tf - 1) = (uint32_t)tmp_tf_u2k;
+        }
         break;
     case IRQ_OFFSET + IRQ_IDE1:
     case IRQ_OFFSET + IRQ_IDE2:

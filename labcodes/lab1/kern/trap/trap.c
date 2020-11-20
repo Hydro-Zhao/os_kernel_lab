@@ -143,8 +143,6 @@ print_regs(struct pushregs *regs) {
     cprintf("  eax  0x%08x\n", regs->reg_eax);
 }
 
-struct trapframe tmp_tf_k2u, *tmp_tf_u2k;
-
 /* trap_dispatch - dispatch based on what type of trap occurred */
 static void
 trap_dispatch(struct trapframe *tf) {
@@ -170,28 +168,29 @@ trap_dispatch(struct trapframe *tf) {
     case IRQ_OFFSET + IRQ_KBD:
         c = cons_getc();
         cprintf("kbd [%03d] %c\n", c, c);
+        if (c == '3') goto _switch_to_user;
+        else if (c == '0') goto _switch_to_kernel;
         break;
     //LAB1 CHALLENGE 1 : YOUR CODE you should modify below codes.
     case T_SWITCH_TOU:
+    _switch_to_user:
         if (trap_in_kernel(tf)) {
-            tmp_tf_k2u = *tf;
-            tmp_tf_k2u.tf_cs = USER_CS;
-            tmp_tf_k2u.tf_ds = USER_DS;
-            tmp_tf_k2u.tf_es = USER_DS;
-            tmp_tf_k2u.tf_ss = USER_DS;
-            tmp_tf_k2u.tf_esp = (uint32_t)tf + sizeof(struct trapframe) - 8;
-
+            struct trapframe temp_tf = *tf;
+            temp_tf.tf_cs = USER_CS;
+            temp_tf.tf_ss = temp_tf.tf_gs = temp_tf.tf_fs = temp_tf.tf_es = temp_tf.tf_ds = USER_DS;
+            // then set the ESP to the ESP of switch_to_user()
+            temp_tf.tf_esp = (uintptr_t)tf + offsetof(struct trapframe, tf_esp);
             // set eflags, make sure ucore can use io under user mode.
             // if CPL > IOPL, then cpu will generate a general protection.
-            tmp_tf_k2u.tf_eflags |= FL_IOPL_MASK;
-		
-            // set temporary stack
-            // then iret will jump to the right stack
-            *((uint32_t *)tf - 1) = (uint32_t)&tmp_tf_k2u;
+            temp_tf.tf_eflags |= FL_IOPL_3;
+            // let __trapret use the temporary stack we set up
+            *((uint32_t *)tf - 1) = (uint32_t) &temp_tf;
         }
         break;
     case T_SWITCH_TOK:
+    _switch_to_kernel:
         if (!trap_in_kernel(tf)) {
+            struct trapframe *tmp_tf_u2k;
             tf->tf_cs = KERNEL_CS;
             tf->tf_ds = KERNEL_DS;
             tf->tf_es = KERNEL_DS;

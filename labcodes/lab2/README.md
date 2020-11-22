@@ -1,7 +1,7 @@
 kern/mm/default_pmm.c
 kern/mm/pmm.c
 
-TODO 按照实验手册填写代码，只修改了需要填写的部分以及lab1中修改的部分，结果完全不能通过测试。将labcode_answer修改的文件替换为中的，测试甚至会卡死，
+TODO 按照实验手册填写代码，只修改了需要填写的部分以及lab1中修改的部分，结果完全不能通过测试。将labcode_answer和labcode中相应文件替换之后，测试甚至无法正常进行，更诡异的是再替换回去之后又都不能正常运行测试（labcode_answer原本是能测试通过的）
 
 # 实验记录
 

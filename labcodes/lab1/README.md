@@ -68,7 +68,7 @@ ucore中的段选择子？？？
 
 不太了解idt_init中使用的宏的值代表的意思，具体就是KERNEL_CS和GD_KTEXT的区别，GD_KTEXT表示什么意思？
 
-## exercise7
+## exercise7 TODO
 
 参考[中断与异常](https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_3_3_2_interrupt_exception.html)的讲解，能否理解扩展实验的实现，就是要理解k2u和u2k的过程中因为特权级的切换，硬件会有什么额外的行为，我们需要为此保存什么，恢复什么。同时要理解trapframe结构体的结构和作用。理解tf->esp和esp的区别，并且在返回中断调用时理解tf->esp和esp的值所代表的意思是非常重要的。
 

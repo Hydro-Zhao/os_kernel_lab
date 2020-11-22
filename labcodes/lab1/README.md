@@ -1,3 +1,7 @@
+kern/debug/kdebug.c
+kern/trap/trap.c
+kern/init/init.c
+
 # Lab1 实验关键点记录
 
 熟悉Lab0中介绍的工具将大大减少Lab1所花时间（Lab1的exercise就是对Lab0中介绍的工具进行实际操作）

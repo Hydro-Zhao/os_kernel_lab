@@ -1,5 +1,7 @@
 kern/debug/kdebug.c
+
 kern/trap/trap.c
+
 kern/init/init.c
 
 # Lab1 实验关键点记录

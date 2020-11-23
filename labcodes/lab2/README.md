@@ -1,30 +1,25 @@
 kern/mm/default_pmm.c
+
 kern/mm/pmm.c
-
-TODO 按照实验手册填写代码，只修改了需要填写的部分以及lab1中修改的部分，结果完全不能通过测试。将labcode_answer替换labcode中相应文件之后，任然无法通过测试。不过将labcode替换labcode_answer中相应文件之后，可以通过测试。关于在labcode中无法通过测试的问题暂时搁置，有时间再解决了。
-
-非常愚蠢的bug
-```
-right: if (!create || (page = alloc_page()) == NULL)
-wrong: if (!create || (page = alloc_page() == NULL))
-```
 
 # 实验记录
 
-如何在建立页表的过程中维护全局段描述符表（GDT）和页表的关系，确保 ucore 能够在各个时间段上都能正常寻址？
+TODO 按照实验手册填写代码，只修改了需要填写的部分以及lab1中修改的部分，结果完全不能通过测试。将labcode_answer替换labcode中相应文件之后，任然无法通过测试。不过将labcode替换labcode_answer中相应文件之后，可以通过测试。关于在labcode中无法通过测试的问题暂时搁置，有时间再解决了。
 
-实验流程概述中第七步从新设置全局段描述符表的作用是什么
 
 ## 实验手册
 
 讲解物理内存探测的部分终于解决了我很多疑惑
 
 建立段页式管理中需要考虑的关键问题 中的问题任然没有解决
+> 从新设置全局段描述符表的作用是什么？
 > 对于哪些物理内存空间需要建立页映射关系？
 > 具体的页映射关系是什么？
 > 页目录表的起始地址设置在哪里？
 > 页表的起始地址设置在哪里，需要多大空间？
 > 如何设置页目录表项的内容？
+
+> 如何在建立页表的过程中维护全局段描述符表（GDT）和页表的关系，确保 ucore 能够在各个时间段上都能正常寻址？
 
 链接地址/虚地址/物理地址/加载地址以及 edata/end/text 的含义 值得一看
 
@@ -43,3 +38,9 @@ wrong: if (!create || (page = alloc_page() == NULL))
 ## exercise3
 
 要回答练习中的问题，要反复阅读 系统执行中地址映射的三个阶段 这一部分。
+
+非常愚蠢的bug
+```
+right: if (!create || (page = alloc_page()) == NULL)
+wrong: if (!create || (page = alloc_page() == NULL))
+```

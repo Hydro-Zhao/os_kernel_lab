@@ -15,3 +15,8 @@ kern/mm/swap_fifo.c
 > 特别地，如果在发生页错误，CPU 试图处理时又发生了页错误（比如访问 IDT 指向的处理程序地址导致页错误），这会被处理器认为是双重错误 （Double Fault），并跳转到双重错误处理程序。一般而言双重错误是不可恢复的，系统应该关闭对应的程序。如果再次触发页错误，则是 Triple Fault，会直接导致处理器重置。
 
 ## exercise2
+
+
+## 扩展练习 Challenge 1：实现识别 dirty bit 的 extended clock 页替换算法（需要编程）
+
+## 扩展练习 Challenge 2：实现不考虑实现开销和效率的 LRU 页替换算法（需要编程）

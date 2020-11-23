@@ -4,7 +4,7 @@ kern/mm/pmm.c
 
 # 实验记录
 
-注释掉了kern/init/init.c中的grade_backtrace()。不知道为什么kern/init/init.c中grade_backtrace()测试返回后会回到kern_init函数开始处继续运行（还是说kern_init又被调用了？看gdb），导致后面mm相关测试无法进行，也就不可能通过测试（我还傻乎乎地静态分析了那么久，实际上gdb调试一下很快就定位到问题了（既然ucore的测试是通过对比qemu的输出，那就实际看一下输出是什么啊））。
+注释掉了kern/init/init.c中的grade_backtrace()（可能和merge lab1不全有关吧）。不知道为什么kern/init/init.c中grade_backtrace()测试返回后会回到kern_init函数开始处继续运行（还是说kern_init又被调用了？看gdb），导致后面mm相关测试无法进行，也就不可能通过测试（我还傻乎乎地静态分析了那么久，实际上gdb调试一下很快就定位到问题了（既然ucore的测试是通过对比qemu的输出，那就实际看一下输出是什么啊））。
 
 ## 实验手册
 
@@ -37,3 +37,7 @@ kern/mm/pmm.c
 right: if (!create || (page = alloc_page()) == NULL)
 wrong: if (!create || (page = alloc_page() == NULL))
 ```
+
+## 扩展练习 Challenge：buddy system（伙伴系统）分配算法（需要编程）
+
+## 扩展练习 Challenge：任意大小的内存单元 slub 分配算法（需要编程）

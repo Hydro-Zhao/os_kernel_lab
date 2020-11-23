@@ -29,7 +29,7 @@ kern_init(void) {
 
     print_kerninfo();
 
-    grade_backtrace();
+    //grade_backtrace();
 
     pmm_init();                 // init physical memory management
 

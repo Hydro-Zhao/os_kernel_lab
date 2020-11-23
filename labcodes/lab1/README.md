@@ -6,6 +6,12 @@ kern/init/init.c
 
 # Lab1 实验关键点记录
 
+## 疑问
+
+Q: TSS段的作用是什么？（lab7任然有问题没有解决）
+
+## 实验手册
+
 熟悉Lab0中介绍的工具将大大减少Lab1所花时间（Lab1的exercise就是对Lab0中介绍的工具进行实际操作）
 
 ## exercise1 理解通过make生成执行文件的过程

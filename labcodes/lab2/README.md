@@ -4,8 +4,7 @@ kern/mm/pmm.c
 
 # 实验记录
 
-TODO 按照实验手册填写代码，只修改了需要填写的部分以及lab1中修改的部分，结果完全不能通过测试。将labcode_answer替换labcode中相应文件之后，任然无法通过测试。不过将labcode替换labcode_answer中相应文件之后，可以通过测试。关于在labcode中无法通过测试的问题暂时搁置，有时间再解决了。
-
+不知道为什么kern/init/init.c中grade_backtrace()测试返回后会回到kern_init函数开始处继续运行（还是说kern_init又被调用了？看gdb），导致后面mm相关测试无法进行，也就不可能通过测试（我还傻乎乎地静态分析了那么久，实际上gdb调试一下很快就定位到问题了（既然ucore的测试是通过对比qemu的输出，那就实际看一下输出是什么啊））。
 
 ## 实验手册
 

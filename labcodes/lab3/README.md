@@ -1,6 +1,6 @@
 kern/mm/vmm.c
 
-kern/mm/swap_fifi.c
+kern/mm/swap_fifo.c
 
 # 实验记录
 

@@ -10,6 +10,8 @@ kern/init/init.c
 
 Q: TSS段的作用是什么？（lab7任然有问题没有解决）
 
+Q: k2u异常返回之后的第一步需要`mov esp, ebp`吗
+
 ## 实验手册
 
 熟悉Lab0中介绍的工具将大大减少Lab1所花时间（Lab1的exercise就是对Lab0中介绍的工具进行实际操作）

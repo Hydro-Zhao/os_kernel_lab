@@ -381,9 +381,7 @@ get_pte(pde_t *pgdir, uintptr_t la, bool create) {
         set_page_ref(page, 1);
         uintptr_t pa = page2pa(page);
         uintptr_t page_la = KADDR(pa);
-        // (6) clear page content using memset
         memset(page_la, 0, PGSIZE);
-        // (7) set page directory entry's permission
         *pdep = pa | PTE_U | PTE_W | PTE_P;
     }
     return (pte_t *)KADDR(PDE_ADDR(*pdep)) + PTX(la);

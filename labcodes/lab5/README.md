@@ -4,11 +4,11 @@ kern/mm/pmm.c copy_range ...
 
 kern/trap/trap.c
 
-TODO 无法通过测试。（labcode_answer也不能完全通过测试）
+**TODO 无法通过测试。（labcode_answer也不能完全通过测试）**
+
+**注释掉了kern/init/init.c中的grade_backtrace()**
 
 # 实验记录
-
-注释掉了kern/init/init.c中的grade_backtrace()
 
 ## lab1，lab4，lab5联合Q&A
 
@@ -28,7 +28,7 @@ TODO 无法通过测试。（labcode_answer也不能完全通过测试）
 
         因为lab4和lab5中用户态栈和内核栈是分开的，而且内核栈上本来就为trapframe保留了空间，所以在u2k时trapframe可以保存在tss指定的位置（也就是内核栈顶预留的位置），k2k的话是在esp指向的位置保存trapframe不会影响之前的trapframe。所以u2k之后只有一串k2k或单独一串k2k都可以做到。但是要注意，在k2k时，trapframe虽然能正常保存在栈上，但是current->tf并不会主动更新，所以在lab5 trap.c的trap函数相对于之前的trap函数有很大的变化，在栈上维护了一个trapframe链（同时也保留了之前的trap函数的处理方式）（注意otf和current->tf都是指针）（我觉的是因为有很多地方会用到全局变量current->tf而不是依靠参数来传递tf）。
 
-    * TODO 关于u2k接一串k2k中途发生了k2u（不对应之前的u2k）然后是u2k（我不知道这种情况存不存在）？如果可以，这样就不能处理tss指向的trapframe被覆盖的问题了和之后的处理程序覆盖之前的处理程序的数据的问题。还是说如果发生这种情况，等同于前一个u2k的本身就不用“返回”，它的trapframe是可以丢弃的？
+    * **TODO 关于u1k接一串k2k中途发生了k2u（不对应之前的u2k）然后是u2k（我不知道这种情况存不存在）？如果可以，这样就不能处理tss指向的trapframe被覆盖的问题了和之后的处理程序覆盖之前的处理程序的数据的问题。还是说如果发生这种情况，等同于前一个u2k的本身就不用“返回”，它的trapframe是可以丢弃的？对于用户进程，内核的操作只是辅助做一些事情，所以不同系统调用之间不需要有记忆性？**
 
     * lab1和lab4能够嵌套中断吗？
 

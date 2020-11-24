@@ -30,7 +30,7 @@ kern_init(void) {
 
     print_kerninfo();
 
-    grade_backtrace();
+    //grade_backtrace();
 
     pmm_init();                 // init physical memory management
 
@@ -95,11 +95,21 @@ lab1_print_cur_status(void) {
 static void
 lab1_switch_to_user(void) {
     //LAB1 CHALLENGE 1 : TODO
+    asm volatile (
+        "int %0"
+        :
+        :"i"(T_SWITCH_TOU)
+    );
 }
 
 static void
 lab1_switch_to_kernel(void) {
     //LAB1 CHALLENGE 1 :  TODO
+    asm volatile (
+        "int %0"
+        :
+        :"i"(T_SWITCH_TOK)
+    );
 }
 
 static void

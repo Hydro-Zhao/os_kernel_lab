@@ -6,7 +6,11 @@ kern/schedule/default_sched.c -rename-> kern/schedule/default_sched_c
 
 kern/schedule/default_sched_stride_c -rename&modify-> kern/schedule/default_sched.c
 
-Makefile
+* TODO Stride Scheduling 调度算法的实现
+
+    BIG_STRIDE数值的确定
+
+    stride_pick_next的实现
 
 # 实验记录
 

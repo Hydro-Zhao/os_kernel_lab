@@ -1,0 +1,92 @@
+badsegment:              (3.6s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+divzero:                 (2.2s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+softint:                 (1.9s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+faultread:               (1.9s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+faultreadkernel:         (2.3s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+hello:                   (2.2s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+testbss:                 (2.2s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+pgdir:                   (2.1s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+yield:                   (2.7s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+badarg:                  (2.2s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+exit:                    (2.0s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+spin:                    (2.2s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+waitkill:                (3.0s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+forktest:                (2.9s)
+  -check result:                             WRONG
+   !! error: missing 'init check memory pass.'
+
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+forktree:                (2.2s)
+  -check result:                             WRONG
+   !! error: missing 'init check memory pass.'
+
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+matrix:                  (23.4s)
+  -check result:                             WRONG
+   !! error: missing 'init check memory pass.'
+
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+priority:                (12.2s)
+  -check result:                             OK
+  -check output:                             WRONG
+   !! error: missing 'check_slab() succeeded!'
+
+Total Score: 98/170

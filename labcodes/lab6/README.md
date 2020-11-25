@@ -1,8 +1,18 @@
-default_sched_stride_c覆盖default_sched.c
+kern/trap/trap.c
 
-**注释掉了kern/init/init.c中的grade_backtrace()**
+kern/process/proc.c
+
+kern/schedule/default_sched.c -rename-> kern/schedule/default_sched_c
+
+kern/schedule/default_sched_stride_c -rename&modify-> kern/schedule/default_sched.c
+
+TODO 解决lab5测试
 
 # 实验记录
+
+## 实验手册
+
+内核抢占点 总结了ucore中进程切换点
 
 ## 练习1: 使用 Round Robin 调度算法（不需要编码）
 

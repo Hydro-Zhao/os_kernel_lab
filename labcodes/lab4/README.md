@@ -1,7 +1,5 @@
 kern/process/proc.c
 
-**注释掉了kern/init/init.c中的grade_backtrace()**
-
 # 实验记录
 
 ## 实验手册

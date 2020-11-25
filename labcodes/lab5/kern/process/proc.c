@@ -109,7 +109,6 @@ alloc_proc(void) {
      *       uint32_t wait_state;                        // waiting state
      *       struct proc_struct *cptr, *yptr, *optr;     // relations between processes
 	 */
-        memset(proc, 0, sizeof(struct proc_struct));
         proc->state = PROC_UNINIT;
         proc->pid = -1;
         proc->runs = 0;

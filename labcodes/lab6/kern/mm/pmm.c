@@ -339,7 +339,7 @@ pmm_init(void) {
 //  pgdir:  the kernel virtual base address of PDT
 //  la:     the linear address need to map
 //  create: a logical value to decide if alloc a page for PT
-// return vaule: the kernel virtual address of this pte
+// return value: the kernel virtual address of this pte
 pte_t *
 get_pte(pde_t *pgdir, uintptr_t la, bool create) {
     /* LAB2 EXERCISE 2: YOUR CODE
@@ -523,9 +523,7 @@ copy_range(pde_t *to, pde_t *from, uintptr_t start, uintptr_t end, bool share) {
          */
         void * kva_src = page2kva(page);
         void * kva_dst = page2kva(npage);
-    
         memcpy(kva_dst, kva_src, PGSIZE);
-
         ret = page_insert(to, npage, start, perm);
         assert(ret == 0);
         }

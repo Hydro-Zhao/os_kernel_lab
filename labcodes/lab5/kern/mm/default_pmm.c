@@ -116,7 +116,7 @@ default_init_memmap(struct Page *base, size_t n) {
     base->property = n;
     SetPageProperty(base);
     nr_free += n;
-    list_add_before(&free_list, &(base->page_link));
+    list_add(&free_list, &(base->page_link));
 }
 
 static struct Page *
@@ -179,8 +179,10 @@ default_free_pages(struct Page *base, size_t n) {
     le = list_next(&free_list);
     while (le != &free_list) {
         p = le2page(le, page_link);
-        if (base + base->property <= p)
+        if (base + base->property <= p) {
+            // base should be inserted here
             break;
+        }
         le = list_next(le);
     }
     list_add_before(le, &(base->page_link));

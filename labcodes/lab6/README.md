@@ -6,7 +6,7 @@ kern/schedule/default_sched.c -rename-> kern/schedule/default_sched_c
 
 kern/schedule/default_sched_stride_c -rename&modify-> kern/schedule/default_sched.c
 
-TODO 解决lab5测试
+Makefile
 
 # 实验记录
 

@@ -2,10 +2,6 @@ kern/fs/sfs/sfs_inode.c
 
 kern/process/proc.c 
 
-TODO merge前面的实验（不包含本实验中修改过的之前的实验文件）
-
-TODO 实际测试通过
-
 # 实验记录
 
 ## 实验手册

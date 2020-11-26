@@ -14,9 +14,7 @@ kern/schedule/default_sched_stride_c -rename&modify-> kern/schedule/default_sche
 
     stride_pick_next的实现?(将堆顶元素的 stride 加上 BIG_STRIDE / PRIORITY，并返回)
 
-* TODO 实际测试通过
-
-    labcodes_answer和Harry-Chen的答案和labcodes_answer中，本repo中labcodes_answer的测试效果算是最好的了，但是仍然没有完全通过。见make_grade_output.txt和make_grade_output_answer.txt
+TODO 实际测试通过
 
 # 实验记录
 

@@ -1,3 +1,23 @@
+## 实验进度
+
+||labcodes|labcodes_answer|[labcodes]|[labcodes_answer]|
+|:-:|:-:|:-:|:-:|:-:|
+|lab1|*|*|||
+|lab2|*|*|||
+|lab3|*|*|||
+|lab4|*|*|||
+|lab5|*|*|*|-|
+|lab6|-|-(missing check_slab()...)|-|-|
+|lab7|-|-(missing check_slab()...)|-|-|
+|lab8|-|-|*|-|
+
+*: 通过测试
+-: 测试未通过
+
+我目前的状态，介于1 2之间（1. 掌握 OS 基本概念：看在线课程，能理解 OS 原理与概念；看在线实验指导书并分析源码，能理labcodes_answer 的 labs 运行结果 2. 掌握 OS 设计实现：在 1 的基础上，能够通过编程完成 labcodes 的 8 个 lab 实验中的基本练习和实验报告 3. 掌握 OS 核心功能：在 2 的基础上，能够通过编程完成 labcodes 的 8 个 lab 实验中的 challenge 练习 4. 掌握 OS 科学研究：在 3 的基础上，能够通过阅读论文、设计、编程、实验评价等过程来完成课程设计（大实验））
+
+---
+
 INTRODUCTION
 ============
 ucore os labs was used as OS Experiments in OS Course Of Dept. of Computer Science & Technology, Tsinghua University.
